@@ -1,0 +1,265 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    {% load pwa %}
+<head>
+
+    
+    {% progressive_web_app_meta %}    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Gateway</title>
+</head>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
+
+    :root {
+        --orange: #ffa500;
+    }
+
+    * {
+        font-family: 'Nunito', sans-serif;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        text-transform: capitalize;
+        outline: none;
+        border: none;
+        text-decoration: none;
+        transition: all .2s linear;
+    }
+
+    *::selection {
+        background: var(--orange);
+        color: #fff;
+    }
+
+    html {
+        font-size: 62.5%;
+        overflow-x: hidden;
+        scroll-padding-top: 6rem;
+        scroll-behavior: smooth;
+    }
+
+    section {
+        padding: 2rem 9%;
+    }
+
+    .heading {
+        text-align: center;
+        padding: 2.5rem 0
+    }
+
+    .heading span {
+        font-size: 3.5rem;
+        background: rgba(255, 165, 0, .2);
+        color: var(--orange);
+        border-radius: .5rem;
+        padding: .2rem 1rem;
+    }
+
+    .heading span.space {
+        background: none;
+    }
+
+    .btn {
+        display: inline-block;
+        margin-top: 1rem;
+        background: var(--orange);
+        color: #fff;
+        padding: .8rem 3rem;
+        border: .2rem solid var(--orange);
+        cursor: pointer;
+        font-size: 1.7rem;
+    }
+
+    .payment .btn:hover{
+        background: rgba(255, 165, 0, .2);
+        color: var(--orange);
+    } 
+
+    .payment .row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5rem;
+        align-items: center;
+    }
+
+    .payment .row .image {
+        flex: 1 1 40rem;
+    }
+
+    .payment .row .image img {
+        width: 100%;
+    }
+
+    .payment .row form {
+        flex: 1 1 40rem;
+        padding: 2rem;
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, .1);
+        border-radius: .5rem;
+    }
+
+    .payment .row form .inputBox {
+        padding: .5rem 0;
+    }
+
+    .payment .row form .inputBox input,
+    .payment .row form .inputBox select {
+        width: 100%;
+        padding: 1rem;
+        border: .1rem solid rgba(0, 0, 0, .1);
+        font-size: 1.7rem;
+        color: #333;
+        text-transform: none;
+    }
+
+
+    .payment .row form .inputBox h3 {
+        font-size: 2rem;
+        padding: 1rem 0;
+        color: #666;
+    
+    }
+    .payment .row form .inputBox label{
+        width: 100%;
+        padding: 1rem;
+        border: .1rem solid rgba(0, 0, 0, .1);
+        font-size: 1.7rem;
+        color: #333;
+        text-transform: none;
+
+    }
+</style>
+
+<body>
+    <section class="payment">
+        <h1 class="heading">
+            <span>P</span>
+            <span>A</span>
+            <span>Y</span>
+            <span>M</span>
+            <span>E</span>
+            <span>N</span>
+            <span>T</span>
+            <span class="space"></span>
+            <span>G</span>
+            <span>A</span>
+            <span>T</span>
+            <span>E</span>
+            <span>W</span>
+            <span>A</span>
+            <span>Y</span>
+        </h1>
+
+        <div class="row">
+
+            <div class="image">
+                <img src="{%static 'images/payment.png' %}" alt="">
+            </div>
+
+            <form action="addPayment" method="post">
+                {% csrf_token %}
+                <div class="inputBox">
+                    <h3>Destination</h3>
+                    <label name="destination" id="finaldes" placeholder="Ladakh">
+                </div>
+                <div class="inputBox">
+                    <h3>Amount</h3>
+                    <label name="amount" id="TotalAmt" placeholder=Rs.35,000.00>
+                </div>
+                <div class="inputBox">
+                    <h3>Mode Of Payment</h3>
+                    <select name="paymentmode" id="" placeholder="Select Payment Method">
+                        <option value="Debit Card">Debit Card</option>
+                        <option value="Credit Card">Credit Card</option>
+                        <!-- <option value="Net Banking">Net Banking</option> -->
+                    </select>
+
+                </div>
+                <div class="inputBox">
+                    <h3>Card Details</h3>
+                    <input type="text" placeholder="Enter your Card No.">
+                </div>
+                <input type="submit" class="btn" value="Make Payment">
+            </form>
+
+        </div>
+    </section>
+    <script>
+        var finaldestination = localStorage.getItem("Destination");
+            console.log(finaldestination);
+            document.getElementById('finaldes').innerHTML=finaldestination;
+            if(finaldestination=="Delhi"){
+                var priceofadult = +localStorage.getItem("No.OfAdults")*7000.00 ;
+                console.log(priceofadult);
+                var priceofchild = +localStorage.getItem("No.OfChild")*5000.00 ;
+                console.log(priceofchild);
+                var priceofinfant = +localStorage.getItem("No.OfInfant")*3000.00 ;
+                console.log(priceofinfant);
+                var totalamount = priceofadult+priceofchild+priceofinfant;
+                console.log(totalamount);
+                document.getElementById("TotalAmt").innerHTML=totalamount;
+            }
+            if(finaldestination=="Manali"){
+                var priceofadult = +localStorage.getItem("No.OfAdults")*20000.00 ;
+                console.log(priceofadult);
+                var priceofchild = +localStorage.getItem("No.OfChild")*17000.00 ;
+                console.log(priceofchild);
+                var priceofinfant = +localStorage.getItem("No.OfInfant")*15000.00 ;
+                console.log(priceofinfant);
+                var totalamount = priceofadult+priceofchild+priceofinfant;
+                console.log(totalamount);
+                document.getElementById("TotalAmt").innerHTML="Rs. " + totalamount;
+            }
+            if(finaldestination=="Rajasthan"){
+                var priceofadult = +localStorage.getItem("No.OfAdults")*15000.00 ;
+                console.log(priceofadult);
+                var priceofchild = +localStorage.getItem("No.OfChild")*12000.00 ;
+                console.log(priceofchild);
+                var priceofinfant = +localStorage.getItem("No.OfInfant")*10000.00 ;
+                console.log(priceofinfant);
+                var totalamount = priceofadult+priceofchild+priceofinfant;
+                console.log(totalamount);
+                document.getElementById("TotalAmt").innerHTML="Rs. "+ totalamount;
+            }
+            if(finaldestination=="Ladakh"){
+                var priceofadult = +localStorage.getItem("No.OfAdults")*35000.00 ;
+                console.log(priceofadult);
+                var priceofchild = +localStorage.getItem("No.OfChild")*30000.00 ;
+                console.log(priceofchild);
+                var priceofinfant = +localStorage.getItem("No.OfInfant")*25000.00 ;
+                console.log(priceofinfant);
+                var totalamount = priceofadult+priceofchild+priceofinfant;
+                console.log(totalamount);
+                document.getElementById("TotalAmt").innerHTML="Rs. "+ totalamount;
+            }
+            if(finaldestination=="Goa"){
+                var priceofadult = +localStorage.getItem("No.OfAdults")*8000.00 ;
+                console.log(priceofadult);
+                var priceofchild = +localStorage.getItem("No.OfChild")*7000.00 ;
+                console.log(priceofchild);
+                var priceofinfant = +localStorage.getItem("No.OfInfant")*6000.00 ;
+                console.log(priceofinfant);
+                var totalamount = priceofadult+priceofchild+priceofinfant;
+                console.log(totalamount);
+                document.getElementById("TotalAmt").innerHTML="Rs. "+ totalamount;
+            }
+            if(finaldestination=="Assam"){
+                var priceofadult = +localStorage.getItem("No.OfAdults")*22000.00 ;
+                console.log(priceofadult);
+                var priceofchild = +localStorage.getItem("No.OfChild")*20000.00 ;
+                console.log(priceofchild);
+                var priceofinfant = +localStorage.getItem("No.OfInfant")*15000.00 ;
+                console.log(priceofinfant);
+                var totalamount = priceofadult+priceofchild+priceofinfant;
+                console.log(totalamount);
+                document.getElementById("TotalAmt").innerHTML="Rs. "+ totalamount;
+            }
+    
+            // console.log("not inside the loop");
+    </script>
+    
+</body>
+
+</html>

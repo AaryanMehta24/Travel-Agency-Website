@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    {% load pwa %}
+<head>
+    
+    {% progressive_web_app_meta %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Packages</title>
+    <link rel="stylesheet" href="{%static 'style.css' %}">
+</head>
+<body>
+    <!-- packages section starts  -->
+
+<section class="packages" id="packages">
+
+    <h1 class="heading">
+        <span>p</span>
+        <span>a</span>
+        <span>c</span>
+        <span>k</span>
+        <span>a</span>
+        <span>g</span>
+        <span>e</span>
+        <span>s</span>
+    </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="{%static 'images/redfort.jpg' %}" alt="">
+            <div class="content">
+                <h3> <i class="fas fa-map-marker-alt"></i> Delhi </h3>
+                <p>Delhi is a colourful city, there an insane variety of food, people and all the things in between </p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <div class="price">  Price per adult: Rs.7,000.00 <span> Rs.10,000.00</span> </div>
+                <div class="price">  Price per child: Rs.5,000.00 <span> Rs.8,000.00</span> </div>
+                <div class="price">  Price per infant: Rs.3,000.00 <span> Rs.6,000.00</span> </div>
+                <a href="{% url 'booking' %}" class="btn">book now</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <img src="{% static 'images/manali.png' %}" alt="">
+            <div class="content">
+                <h3> <i class="fas fa-map-marker-alt"></i> Manali </h3>
+                <p>Besides natural charm and unparalleled beauty, Manali is known for its unlimited adventure opportunities </p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <div class="price"> Price per adult: Rs.20,000.00 <span>Rs.25,000.00</span> </div>
+                <div class="price"> Price per child: Rs.17,000.00 <span>Rs.18,000.00 </span> </div>
+                <div class="price"> Price per infant: Rs.15,000.00 <span>Rs.16,000.00</span> </div>
+                <a href="{% url 'booking' %}" class="btn">book now</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <img src="{%static 'images/rajasthan.png' %}" alt="">
+            <div class="content">
+                <h3> <i class="fas fa-map-marker-alt"></i> Rajasthan </h3>
+                <p> Rajasthan is a glittering jewel of India. It is the jewel that has all from an adventurous holiday, to a quiet sojourn gazing one at the beauty ..</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <div class="price"> Price per adult: Rs.15,000.00 <span>Rs.18,000.00</span> </div>
+                <div class="price"> Price per child: Rs.12,000.00 <span>Rs.15,000.00</span> </div>
+                <div class="price"> Price per infant: Rs.10,000.00 <span>Rs.13,000.00</span> </div>
+                <a href="{% url 'booking' %}" class="btn">book now</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <img src="{%static 'images/ladakh.png' %}" alt="">
+            <div class="content">
+                <h3> <i class="fas fa-map-marker-alt"></i> Ladakh </h3>
+                <p> Ladakh is most famous for breathtaking landscapes, the crystal clear skies, the highest mountain passes, thrilling adventure activities, Buddhist Monasteries and festivals</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <div class="price"> Price per adult: Rs.35,000.00 <span>Rs.40,000.00 </span> </div>
+                <div class="price"> Price per child: Rs.30,000.00 <span>Rs.28,000.00</span> </div>
+                <div class="price"> Price per infant: Rs.25,000.00 <span>Rs.20,000.00</span> </div>
+                <a href="{% url 'booking' %}" class="btn">book now</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <img src="{%static 'images/goa.png' %}" alt="">
+            <div class="content">
+                <h3> <i class="fas fa-map-marker-alt"></i> Goa </h3>
+                <p>Goa is one of the most favorite destination among Indian tourists due to its pristine beaches </p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <div class="price"> Price per adult: Rs.8,000.00 <span> Rs.10,000.00</span> </div>
+                <div class="price"> Price per child: Rs.7,000.00 <span> Rs.9,000.00</span> </div>
+                <div class="price"> Price per infant: Rs.6,000.00 <span> Rs.8,000.00</span> </div>
+                <a href="{% url 'booking' %}" class="btn">book now</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <img src="{%static 'images/assam.png' %}" alt="">
+            <div class="content">
+                <h3> <i class="fas fa-map-marker-alt"></i> Assam </h3>
+                <p>Assam the land of tea and ultimate beauty </p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <div class="price">Price per adult: Rs.22,000.00 <span>Rs.25,000.00</span> </div>
+                <div class="price">Price per child: Rs.20,000.00 <span>Rs.22,000.00</span> </div>
+                <div class="price">Price per infant: Rs.15,000.00 <span>Rs.18,000.00</span> </div>
+                <a href="{% url 'booking' %}" class="btn">book now</a>
+            </div>
+        </div>
+
+    </div>
+
+
+</section>
+
+<!-- packages section ends -->
+
+</body>
+</html>

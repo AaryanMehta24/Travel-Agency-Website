@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    {% load pwa %}
+
+<head>
+    {% progressive_web_app_meta %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking</title>
+    <link rel="stylesheet" href="{%static 'style.css' %}">
+    <script>
+        function passvalues(){
+            var destination = document.getElementById('Destination').value;
+            var adult = document.getElementById('Adult').value ;
+            var child = document.getElementById('Child').value ;
+            var infant = document.getElementById('Infant').value;
+            // adult =parseInt(adult,10);
+            // child =parseInt(child,10);
+            // infant =parseInt(infant,10);
+            localStorage.setItem("No.OfAdults",adult);
+            localStorage.setItem("No.OfChild",child);
+            localStorage.setItem("No.OfInfant",infant);
+            localStorage.setItem("Destination",destination);
+            return;
+        }
+    </script>
+</head>
+<style>
+    .book .row form .inputBox input,
+    .book .row form .inputBox select {
+        width: 100%;
+        padding: 1rem;
+        border: .1rem solid rgba(0, 0, 0, .1);
+        font-size: 1.7rem;
+        color: #333;
+        text-transform: none;
+    }
+</style>
+<body>
+    <!-- book section starts  -->
+
+<section class="book" id="book">
+
+    <h1 class="heading">
+        <span>b</span>
+        <span>o</span>
+        <span>o</span>
+        <span>k</span>
+        <span class="space"></span>
+        <span>n</span>
+        <span>o</span>
+        <span>w</span>
+    </h1>
+
+    <div class="row">
+
+        <div class="image">
+            <img src="{%static 'images/book-img.svg' %}" alt="">
+        </div>
+
+        <form action="{% url 'traveller' %}" name="Booking_Form" method="POST">
+            {% csrf_token %}
+            <div class="inputBox">
+                <h3>Where to</h3>
+                <!-- <input type="text" placeholder="place name"> -->
+                <select name="destination_options" id="Destination">
+                    <option value="Delhi">Delhi</option>
+                    <option value="Manali">Manali</option>
+                    <option value="Assam">Assam</option>
+                    <option value="Ladakh">Ladakh</option>
+                    <option value="Goa">Goa</option>
+                    <option value="Rajasthan">Rajashthan</option>
+
+                </select>
+            </div>
+            <div class="inputBox">
+                <h3>Adults</h3>
+                <input type="number" placeholder="Number of Adults" id="Adult" name=adult>
+            </div>
+            <div class="inputBox">
+                <h3>Children</h3>
+                <input type="number" placeholder="Number of Children" id="Child" name='child'>
+            </div>
+            <div class="inputBox">
+                <h3>Infants</h3>
+                <input type="number" placeholder="Number of Infants" id="Infant" name='infant'>
+            </div>
+            <div class="inputBox">
+                <h3>arrivals</h3>
+                <input type="date" name='dateofarrival'>
+            </div>
+            <!-- <div class="inputBox">
+                <h3>leaving</h3>
+                <input type="date">
+            </div> -->
+            <input type="submit" class="btn" value="Add Details" onclick="passvalues()" >
+            <!-- <a href="{% url 'traveller' %}" class="btn">Book Now</a> -->
+        </form>
+
+    </div>.
+
+</section>
+
+<!-- book section ends -->
+</body>
+</html>

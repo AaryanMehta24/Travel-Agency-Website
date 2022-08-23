@@ -1,0 +1,607 @@
+<!-- admin - 1234 -->
+
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    {% load pwa %}
+
+<head>
+    {% progressive_web_app_meta %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAPAGO Travel</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" href="{%static 'style.css' %}">
+    <link rel="manifest" href="/manifest.webmanifest">
+
+    <!-- Payment Gateway link -->
+    <!-- <link rel="stylesheet" href="{%static 'payment.html' %}"> -->
+
+    <!-- Booking link -->
+    <!-- <link rel="stylesheet" href="{%static 'booking.html' %}"> -->
+
+    <!-- Packages link -->
+    <!-- <link rel="stylesheet" href="{%static 'packages.html' %}"> -->
+
+    <!-- Register link -->
+    <!-- <link rel="stylesheet" href="{%static 'register.html' %}"> -->
+    
+
+</head>
+<body>
+    
+<!-- header section starts  -->
+
+<header>
+
+    <div id="menu-bar" class="fas fa-bars"></div>
+
+    <a href="#" class="logo"><span>P</span>apaGo</a>
+
+    <nav class="navbar">
+        <a href="#home">home</a>
+        <a href="{% url 'booking' %}">book</a>
+        <a href="{% url 'packages' %}">packages</a>
+        <a href="#services">services</a>
+        <a href="#gallery">gallery</a>
+        <a href="#review">review</a>
+        
+    </nav>
+
+    <div class="icons">
+        <i class="fas fa-search" id="search-btn"></i>
+        {% if user.is_authenticated %}
+        <a href="{% url 'login' %}"><i class="fas fa-user" id="login-btn">{{user.first_name}}</i></a>
+        <a href="{% url 'logout' %}"><i>Logout</i></a>
+        {% else %}
+        <a href="{% url 'login' %}"><i class="fas fa-user" id="login-btn">Login</i></a>
+        {% endif %}
+        
+    </div>
+
+    <form action="" class="search-bar-container">
+        <input type="search" id="search-bar" placeholder="search here...">
+        <label for="search-bar" class="fas fa-search"></label>
+    </form>
+
+</header>
+
+<!-- header section ends -->
+
+<!-- login form container  -->
+
+<!-- <div class="login-form-container">
+
+    <i class="fas fa-times" id="form-close"></i>
+
+    <form action="loginUser" method="post" name="LoginForm">
+        {% csrf_token %}
+        <h3>login</h3>
+        <input name="username" type="text" class="box" placeholder="enter your username" >
+        <input name="password3" type="password" class="box" placeholder="enter your password" >
+        <input type="submit" value="login now" class="btn" id="loginBtn">
+        <input type="checkbox" id="remember">
+        <label for="remember">remember me</label>
+        <p>forget password? <a href="#">click here</a></p>
+        <p>don't have and account? <a href="#" onclick="Toggle()" id="createacc">register now</a></p>
+    </form>
+</div> -->
+
+<!-- Register form starts-->
+
+<!-- <div id="register-form-container">
+
+    <i class="fas fa-times" id="form-close"></i>
+
+    <form action="registerUser" name="RegisterationForm" onsubmit="return validate()" method="post">
+        {% csrf_token %}
+        <h3>Register</h3>
+        <input type="text" class="box" name = "first_name" placeholder="Enter Your First Name"  value="">
+        <input type="text" class="box" name = "last_name" placeholder="Enter Your Last Name"  value="">
+        <input type="text" class="box" name = "username" placeholder="Enter Your Username"  value="">
+        <input type="password" class="box" name="password1" placeholder="Enter Your Password" value="">
+        <input type="password" class="box" name="password2" placeholder="Confirm Your Password"  value="">
+        <input type="email" class="box" name="email" placeholder="Enter Your Email"  value="">
+        
+        <p id="Message"></p>
+        
+        <input type="submit" value="Submit" class="btn" id="registerBtn">
+        {% for message in messages %}
+        <h3>{{messages}}</h3>
+        {% endfor %}
+
+
+    </form>
+
+</div> -->
+
+
+
+
+<!-- Regiser form ends -->
+
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+
+    <div class="content">
+        <h3>adventure is worthwhile</h3>
+        <p>dicover new places with us, adventure awaits</p>
+        <a href="/packages" class="btn">discover more</a>
+    
+    </div>
+
+    <!-- <div class="controls">
+        <span class="vid-btn active" data-src="images/vid-1.mp4"></span>
+        <span class="vid-btn" data-src="images/vid-2.mp4"></span>
+        <span class="vid-btn" data-src="images/vid-3.mp4"></span>
+        <span class="vid-btn" data-src="images/vid-4.mp4"></span>
+        <span class="vid-btn" data-src="images/vid-5.mp4"></span>
+    </div> -->
+
+    <div class="video-container">
+        <video src="{%static 'images/vid-1.mp4' %}" id="video-slider" loop autoplay muted ></video>
+    </div>
+
+</section>
+
+<!-- home section ends -->
+ <!-- packages section starts  -->
+
+ <section class="packages" id="packages">
+
+    <h1 class="heading">
+        <span>p</span>
+        <span>a</span>
+        <span>c</span>
+        <span>k</span>
+        <span>a</span>
+        <span>g</span>
+        <span>e</span>
+        <span>s</span>
+    </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="{%static 'images/redfort.jpg' %}" alt="">
+            <div class="content">
+                <h3> <i class="fas fa-map-marker-alt"></i> Delhi </h3>
+                <p>Delhi is a colourful city, there an insane variety of food, people and all the things in between </p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <div class="price">  Price per adult: Rs.7,000.00 <span> Rs.10,000.00</span> </div>
+                <div class="price">  Price per child: Rs.5,000.00 <span> Rs.8,000.00</span> </div>
+                <div class="price">  Price per infant: Rs.3,000.00 <span> Rs.6,000.00</span> </div>
+                <a href="{% url 'booking' %}" class="btn">book now</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <img src="{% static 'images/manali.png' %}" alt="">
+            <div class="content">
+                <h3> <i class="fas fa-map-marker-alt"></i> Manali </h3>
+                <p>Besides natural charm and unparalleled beauty, Manali is known for its unlimited adventure opportunities </p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <div class="price"> Price per adult: Rs.20,000.00 <span>Rs.25,000.00</span> </div>
+                <div class="price"> Price per child: Rs.17,000.00 <span>Rs.18,000.00 </span> </div>
+                <div class="price"> Price per infant: Rs.15,000.00 <span>Rs.16,000.00</span> </div>
+                <a href="{% url 'booking' %}" class="btn">book now</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <img src="{%static 'images/rajasthan.png' %}" alt="">
+            <div class="content">
+                <h3> <i class="fas fa-map-marker-alt"></i> Rajasthan </h3>
+                <p> Rajasthan is a glittering jewel of India. It is the jewel that has all from an adventurous holiday, to a quiet sojourn gazing one at the beauty ..</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <div class="price"> Price per adult: Rs.15,000.00 <span>Rs.18,000.00</span> </div>
+                <div class="price"> Price per child: Rs.12,000.00 <span>Rs.15,000.00</span> </div>
+                <div class="price"> Price per infant: Rs.10,000.00 <span>Rs.13,000.00</span> </div>
+                <a href="{% url 'booking' %}" class="btn">book now</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <img src="{%static 'images/ladakh.png' %}" alt="">
+            <div class="content">
+                <h3> <i class="fas fa-map-marker-alt"></i> Ladakh </h3>
+                <p> Ladakh is most famous for breathtaking landscapes, the crystal clear skies, the highest mountain passes, thrilling adventure activities, Buddhist Monasteries and festivals</p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <div class="price"> Price per adult: Rs.35,000.00 <span>Rs.40,000.00 </span> </div>
+                <div class="price"> Price per child: Rs.30,000.00 <span>Rs.28,000.00</span> </div>
+                <div class="price"> Price per infant: Rs.25,000.00 <span>Rs.20,000.00</span> </div>
+                <a href="{% url 'booking' %}" class="btn">book now</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <img src="{%static 'images/goa.png' %}" alt="">
+            <div class="content">
+                <h3> <i class="fas fa-map-marker-alt"></i> Goa </h3>
+                <p>Goa is one of the most favorite destination among Indian tourists due to its pristine beaches </p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <div class="price"> Price per adult: Rs.8,000.00 <span> Rs.10,000.00</span> </div>
+                <div class="price"> Price per child: Rs.7,000.00 <span> Rs.9,000.00</span> </div>
+                <div class="price"> Price per infant: Rs.6,000.00 <span> Rs.8,000.00</span> </div>
+                <a href="{% url 'booking' %}" class="btn">book now</a>
+            </div>
+        </div>
+
+        <div class="box">
+            <img src="{%static 'images/assam.png' %}" alt="">
+            <div class="content">
+                <h3> <i class="fas fa-map-marker-alt"></i> Assam </h3>
+                <p>Assam the land of tea and ultimate beauty </p>
+                <div class="stars">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                </div>
+                <div class="price">Price per adult: Rs.22,000.00 <span>Rs.25,000.00</span> </div>
+                <div class="price">Price per child: Rs.20,000.00 <span>Rs.22,000.00</span> </div>
+                <div class="price">Price per infant: Rs.15,000.00 <span>Rs.18,000.00</span> </div>
+                <a href="{% url 'booking' %}" class="btn">book now</a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- packages section ends -->
+
+
+
+<!-- services section starts  -->
+
+<section class="services" id="services">
+
+    <h1 class="heading">
+        <span>s</span>
+        <span>e</span>
+        <span>r</span>
+        <span>v</span>
+        <span>i</span>
+        <span>c</span>
+        <span>e</span>
+        <span>s</span>
+    </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <i class="fas fa-hotel"></i>
+            <h3>Affordable Hotels</h3>
+            <p>Enjoy a luxurious staycation at low cost </p>
+        </div>
+        <div class="box">
+            <i class="fas fa-utensils"></i>
+            <h3>Food and Drinks</h3>
+            <p>Dine in the finest restaurants</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-bullhorn"></i>
+            <h3>Safety Guide</h3>
+            <p>Travel alone without any worries</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-globe-asia"></i>
+            <h3>Around the World</h3>
+            <p>Around the world</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-plane"></i>
+            <h3>Fastest Travel</h3>
+            <p>Fastest travelling options at low prices</p>
+        </div>
+        <div class="box">
+            <i class="fas fa-hiking"></i>
+            <h3>Adventures</h3>
+            <p>Explore the world</p>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- services section ends -->
+
+<!-- gallery section starts  -->
+
+<section class="gallery" id="gallery">
+
+    <h1 class="heading">
+        <span>g</span>
+        <span>a</span>
+        <span>l</span>
+        <span>l</span>
+        <span>e</span>
+        <span>r</span>
+        <span>y</span>
+    </h1>
+
+    <div class="box-container">
+
+        <div class="box">
+            <img src="{%static 'images/g-1.jpg' %}" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Amazing Places</p>
+                <a href="#" class="btn">see more</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="{%static 'images/g-2.jpg' %}" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Amazing Places</p>
+                <a href="#" class="btn">see more</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="{%static 'images/g-3.jpg' %}" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Amazing Places</p>
+                <a href="#" class="btn">see more</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="{%static 'images/g-4.jpg' %}" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Amazing Places</p>
+                <a href="#" class="btn">see more</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="{%static 'images/g-5.jpg' %}" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Amazing Places</p>
+                <a href="#" class="btn">see more</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="{%static 'images/g-6.jpg' %}" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Amazing Places</p>
+                <a href="#" class="btn">see more</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="{%static 'images/g-7.jpg' %}" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Amazing Places</p>
+                <a href="#" class="btn">see more</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="{%static 'images/g-8.jpg' %}" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Amazing Places</p>
+                <a href="#" class="btn">see more</a>
+            </div>
+        </div>
+        <div class="box">
+            <img src="{%static 'images/g-9.jpg' %}" alt="">
+            <div class="content">
+                <h3>amazing places</h3>
+                <p>Amazing Places</p>
+                <a href="#" class="btn">see more</a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<!-- gallery section ends -->
+
+<!-- review section starts  -->
+
+<section class="review" id="review">
+
+    <h1 class="heading">
+        <span>r</span>
+        <span>e</span>
+        <span>v</span>
+        <span>i</span>
+        <span>e</span>
+        <span>w</span>
+    </h1>
+
+    <div class="swiper-container review-slider">
+
+        <div class="swiper-wrapper">
+
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="{%static 'images/Pranav.png' %}" alt="">
+                    <h3>Pranav Awhad</h3>
+                    <p>Best website to travel around the world. Offers variety of hotels at a great deal</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="{%static 'images/Aaryan.png' %}" alt="">
+                    <h3>Aaryan Mehta</h3>
+                    <p>Best website to travel around the world. Offers variety of hotels at a great deal</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="box">
+                    <img src="{%static 'images/Atharv.png' %}" alt="">
+                    <h3>Atharv Parab</h3>
+                    <p>Best website to travel around the world. Offers variety of hotels at a great deal</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="swiper-slide">
+                <div class="box">
+                    <img src="images/pic4.png" alt="">
+                    <h3>john deo</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa adipisci quisquam sunt nesciunt fugiat odit minus illum asperiores dolorum enim sint quod ipsam distinctio molestias consectetur ducimus beatae, reprehenderit exercitationem!</p>
+                    <div class="stars">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="far fa-star"></i>
+                    </div>
+                </div>
+            </div> -->
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- review section ends -->
+
+
+
+<!-- brand section  -->
+<section class="brand-container">
+
+    <div class="swiper-container brand-slider">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="{%static 'images/1.jpg' %}" alt=""></div>
+            <div class="swiper-slide"><img src="{%static 'images/2.jpg' %}" alt=""></div>
+            <div class="swiper-slide"><img src="{%static 'images/3.jpg' %}" alt=""></div>
+            <div class="swiper-slide"><img src="{%static 'images/4.jpg' %}" alt=""></div>
+            <div class="swiper-slide"><img src="{%static 'images/5.jpg' %}" alt=""></div>
+            <div class="swiper-slide"><img src="{%static 'images/6.jpg' %}" alt=""></div>
+        </div>
+    </div>
+
+</section>
+
+<!-- footer section  -->
+
+<section class="footer">
+
+    <div class="box-container">
+
+        <div class="box">
+            <h3>about us</h3>
+            <p>We offer the best locations at a great deal</p>
+        </div>
+        <div class="box">
+            <h3>branch locations</h3>
+            <a href="#">Mumbai</a>
+        </div>
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="#">home</a>
+            <a href="#">book</a>
+            <a href="#">packages</a>
+            <a href="#">services</a>
+            <a href="#">gallery</a>
+            <a href="#">review</a>
+            
+        </div>
+        <div class="box">
+            <h3>follow us</h3>
+            <a href="#">facebook</a>
+            <a href="#">instagram</a>
+            <a href="#">twitter</a>
+            <a href="#">linkedin</a>
+        </div>
+
+    </div>
+
+    <h1 class="credit"> created by <span> 
+        Group12-D15B(Pranav Awhad, Aaryan Mehta, Atharv Parab) </span> | all rights reserved! </h1>
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- custom js file link  -->
+<script src="{%static 'script.js' %}">
+  
+</script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</body>
+</html>
